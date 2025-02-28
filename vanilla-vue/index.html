@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue basics</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="increment()">
+            Click me 🫦
+        </button>
+        <p>Clicked {{ count }} times</p>
+        <button @click="reset()">
+            Reset 🫦
+        </button>
+    </div>
+</body>
+<script>
+    const options = {
+        data() {
+            return {
+                count: 0
+            }
+        },
+        methods: {
+            increment() {
+                this.count++
+            },
+            reset() {
+                this.count = 0
+            }
+        }
+    }
+    Vue.createApp(options).mount('#app');
+</script>
+
+</html>
