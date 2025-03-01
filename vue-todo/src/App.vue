@@ -10,7 +10,7 @@
       Description
       <input v-model="data.todo" type="text" id="todo-description" />
       <!--
-        v-model provides a two-way binding, so when the input changes, it updates the reactive value.
+        v-model provides a two-way binding with a reactive variable, so when the input changes, it updates the reactive value.
         or if the value changes it updates the input field
       -->
       <input type="submit" value="Create" />
