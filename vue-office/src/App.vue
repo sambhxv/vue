@@ -1,47 +1,39 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div v-if="data">
+    <ul>
+      <li v-for="item in data">
+        {{ item.first_name }} {{ item.last_name }}
+        <img :src="item.avatar" alt="" />
+      </li>
+    </ul>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script setup>
+import { ref, onMounted } from "vue";
+import Item from "./Item.vue";
+/**
+ * difference bw reactive and ref:
+ * let loading = ref(false);
+ * loading.value = true; ------------> updates the value
+ *
+ * let loading = reactive({ value: false });
+ * loading.value = true; ------------> does not update the value
+ * but
+ * data.loading = true; ------------> updates the value
+ *
+ * We use reactive when we have a reactive object, but for single values, ref is preferred.
+ */
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+const data = ref(null);
+const OFFICE_API = "https://reqres.in/api/users";
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+onMounted(() => { // executes when the component of App.vue is mounted
+  fetch(OFFICE_API)
+    .then((d) => d.json())
+    .then((message) => {
+      console.log(message.data);
+      data.value = message.data;
+    });
+});
+</script>
