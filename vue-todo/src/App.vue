@@ -28,7 +28,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup>  // composition API, but options API can also be used, core difference being, the second one divides the script into methods and data objects
 import { reactive, ref } from "vue";  // ref creates a reactive value as well, it can be updated using name.value
 
 const displayForm = ref(false);
