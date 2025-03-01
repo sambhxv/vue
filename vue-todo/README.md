@@ -1,29 +1,15 @@
 # vue-todo
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
 ```
+<script setup> // composition API instead of options API, options work directly in the markup, requires build tools setup for transpiling
+  import {reactive} from "vue";
 
-### Compile and Hot-Reload for Development
+  const data = reactive({
+    count: 0
+  })
 
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
+  const increment = () => {
+    data.count++
+  }
+</script>
 ```
